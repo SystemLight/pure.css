@@ -9,14 +9,7 @@ hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
     border: 0;
 }
 
-html, 
-body, 
-#app {
-    height: 100%;
-}
-
 body {
-    height: 100%;
     font-family: "Segoe UI", Arial, "Microsoft YaHei", sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
     font-size: 14px;
     line-height: 1;
