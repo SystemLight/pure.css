@@ -1,3 +1,12 @@
+:root {
+    --color-dark: #070D0D;
+    --color-grey: #D8DCD6;
+    --color-blue: #107AB0;
+    --color-rose: #FDC1C5;
+    --color-grapefruit: #FD5956;
+    --color-danger: #FE2C54;
+}
+
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
 blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em,
 img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u,
@@ -6,11 +15,10 @@ article, aside, canvas, details, embed, figure, figcaption, footer, header,
 hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
     margin: 0;
     padding: 0;
-    border: 0;
 }
 
 body {
-    font-family: "Segoe UI", Arial, "Microsoft YaHei", sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    font-family: "Segoe UI", Arial, "Microsoft YaHei", "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
     font-size: 14px;
     line-height: 1;
     text-rendering: optimizeLegibility;
@@ -22,27 +30,17 @@ label {
     font-weight: bold;
 }
 
-a, 
+a,
 a:link,
-a:visited, 
+a:visited,
 a:hover,
 a:active {
     color: inherit;
     cursor: pointer;
     text-decoration: none;
-    outline: none;
 }
 
-div:focus {
-    outline: none;
-}
-
-ol, 
-ul {
-    list-style: none;
-}
-
-blockquote, 
+blockquote,
 q {
     quotes: none;
 }
@@ -52,22 +50,34 @@ table {
     border-spacing: 0;
 }
 
+ol,
+ul {
+    list-style: none;
+}
+
 /* utils */
-.pure-clearfix::after {
+.pure-clearfix::after,
+.pure-collapse::after {
     content: "";
-    display: block;
     height: 0;
     font-size: 0;
     visibility: hidden;
+}
+
+.pure-clearfix::after {
+    display: block;
     clear: both;
 }
 
 .pure-collapse::after {
-    content: "";
     display: table;
-    height: 0;
-    font-size: 0;
-    visibility: hidden;
+}
+
+.pure-rect {
+    width: 100px;
+    height: 100px;
+    background-color: #03719C;
+    box-sizing: border-box;
 }
 
 .pure-w-100 {
@@ -76,6 +86,30 @@ table {
 
 .pure-h-100 {
     height: 100%;
+}
+
+.pure-w-75 {
+    width: 75%;
+}
+
+.pure-h-75 {
+    height: 75%;
+}
+
+.pure-w-50 {
+    width: 50%;
+}
+
+.pure-h-50 {
+    height: 50%;
+}
+
+.pure-w-25 {
+    width: 25%;
+}
+
+.pure-h-25 {
+    height: 25%;
 }
 
 .pure-pt-0 {
@@ -464,6 +498,8 @@ table {
     justify-content: center;
 }
 
+.pure-before-none::before,
+.pure-after-none::after,
 .pure-d-none {
     display: none;
 }
@@ -490,6 +526,14 @@ table {
 
 .pure-hidden {
     visibility: hidden;
+}
+
+.pure-no-event {
+    pointer-events: none;
+}
+
+.pure-no-select {
+    user-select: none;
 }
 
 @media screen and (max-width: 4096px) {
