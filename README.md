@@ -14,6 +14,10 @@ import '@systemlight/pure.css';
 
 ## CHANGELOG
 
+#### V1.2.0
+
+- 引入sass工程化构建
+
 #### V1.0.1
 
 - 增加媒体查询显示和隐藏
