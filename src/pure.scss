@@ -1,0 +1,1086 @@
+$variable-prefix: "pe-";
+
+$font-size: 14px;
+
+$blue: #107AB0;
+$red: #FE2C54;
+
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
+
+:root {
+  @each $color, $value in $colors {
+    --#{$variable-prefix}#{$color}: #{$value};
+  }
+
+  @each $color, $value in $grays {
+    --#{$variable-prefix}gray-#{$color}: #{$value};
+  }
+
+  @each $color, $value in $theme-colors {
+    --#{$variable-prefix}#{$color}: #{$value};
+  }
+
+  @each $color, $value in $theme-colors-rgb {
+    --#{$variable-prefix}#{$color}-rgb: #{$value};
+  }
+
+  --#{$variable-prefix}white-rgb: #{to-rgb($white)};
+  --#{$variable-prefix}black-rgb: #{to-rgb($black)};
+  --#{$variable-prefix}body-color-rgb: #{to-rgb($body-color)};
+  --#{$variable-prefix}body-bg-rgb: #{to-rgb($body-bg)};
+
+  --#{$variable-prefix}font-sans-serif: #{inspect($font-family-sans-serif)};
+  --#{$variable-prefix}font-monospace: #{inspect($font-family-monospace)};
+  --#{$variable-prefix}gradient: #{$gradient};
+
+  @if $font-size-root != null {
+    --#{$variable-prefix}root-font-size: #{$font-size-root};
+  }
+  --#{$variable-prefix}body-font-family: #{$font-family-base};
+  --#{$variable-prefix}body-font-size: #{$font-size-base};
+  --#{$variable-prefix}body-font-weight: #{$font-weight-base};
+  --#{$variable-prefix}body-line-height: #{$line-height-base};
+  --#{$variable-prefix}body-color: #{$body-color};
+  @if $body-text-align != null {
+    --#{$variable-prefix}body-text-align: #{$body-text-align};
+  }
+  --#{$variable-prefix}body-bg: #{$body-bg};
+
+  @if $enable-smooth-scroll {
+    @media (prefers-reduced-motion: no-preference) {
+      scroll-behavior: smooth;
+    }
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
+blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em,
+img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u,
+i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, caption,
+article, aside, canvas, details, embed, figure, figcaption, footer, header,
+hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: "Segoe UI", Arial, "Microsoft YaHei", "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
+  font-size: $font-size;
+  line-height: 1;
+  text-rendering: optimizelegibility;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba($black, 0);
+}
+
+hr {
+  margin: $hr-margin-y 0;
+  color: $hr-color;
+  background-color: currentColor;
+  border: 0;
+  opacity: $hr-opacity;
+}
+
+hr:not([size]) {
+  height: $hr-height
+}
+
+%heading {
+  margin-top: 0;
+  margin-bottom: $headings-margin-bottom;
+  font-family: $headings-font-family;
+  font-style: $headings-font-style;
+  font-weight: $headings-font-weight;
+  line-height: $headings-line-height;
+  color: $headings-color;
+}
+
+h1 {
+  @extend %heading;
+  @include font-size($h1-font-size);
+}
+
+h2 {
+  @extend %heading;
+  @include font-size($h2-font-size);
+}
+
+h3 {
+  @extend %heading;
+  @include font-size($h3-font-size);
+}
+
+h4 {
+  @extend %heading;
+  @include font-size($h4-font-size);
+}
+
+h5 {
+  @extend %heading;
+  @include font-size($h5-font-size);
+}
+
+h6 {
+  @extend %heading;
+  @include font-size($h6-font-size);
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: $paragraph-margin-bottom;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+abbr[title] {
+  text-decoration: underline dotted;
+  cursor: help;
+  text-decoration-skip-ink: none;
+}
+
+address {
+  margin-bottom: 1rem;
+  font-style: normal;
+  line-height: inherit;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote {
+  margin: 0 0 1rem;
+}
+
+b,
+strong {
+  font-weight: $font-weight-bolder;
+}
+
+small {
+  @include font-size($small-font-size);
+}
+
+mark {
+  padding: $mark-padding;
+  background-color: $mark-bg;
+}
+
+sub,
+sup {
+  position: relative;
+  @include font-size($sub-sup-font-size);
+  line-height: 0;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -.25em;
+}
+
+sup {
+  top: -.5em;
+}
+
+pre,
+code,
+kbd,
+samp {
+  font-family: $font-family-code;
+  @include font-size(1em);
+  direction: ltr #{"/* rtl:ignore */"};
+  unicode-bidi: bidi-override;
+}
+
+pre {
+  display: block;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  overflow: auto;
+  @include font-size($code-font-size);
+  color: $pre-color;
+
+  code {
+    @include font-size(inherit);
+    color: inherit;
+    word-break: normal;
+  }
+}
+
+code {
+  @include font-size($code-font-size);
+  color: $code-color;
+  word-wrap: break-word;
+
+  a > & {
+    color: inherit;
+  }
+}
+
+a,
+a:link,
+a:visited,
+a:hover,
+a:active {
+  color: inherit;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+kbd {
+  padding: $kbd-padding-y $kbd-padding-x;
+  @include font-size($kbd-font-size);
+  color: $kbd-color;
+  background-color: $kbd-bg;
+  @include border-radius($border-radius-sm);
+
+  kbd {
+    padding: 0;
+    @include font-size(1em);
+    font-weight: $nested-kbd-font-weight;
+  }
+}
+
+figure {
+  margin: 0 0 1rem;
+}
+
+img,
+svg {
+  vertical-align: middle;
+}
+
+::-moz-focus-inner {
+  padding: 0;
+  border-style: none;
+}
+
+label {
+  font-weight: bold;
+}
+
+textarea {
+  resize: vertical;
+}
+
+fieldset {
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+legend {
+  float: left;
+  width: 100%;
+  padding: 0;
+  margin-bottom: $legend-margin-bottom;
+  @include font-size($legend-font-size);
+  font-weight: $legend-font-weight;
+  line-height: inherit;
+
+  + * {
+    clear: left;
+  }
+}
+
+::-webkit-datetime-edit-fields-wrapper,
+::-webkit-datetime-edit-text,
+::-webkit-datetime-edit-minute,
+::-webkit-datetime-edit-hour-field,
+::-webkit-datetime-edit-day-field,
+::-webkit-datetime-edit-month-field,
+::-webkit-datetime-edit-year-field {
+  padding: 0;
+}
+
+::-webkit-inner-spin-button {
+  height: auto;
+}
+
+::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+::file-selector-button {
+  font: inherit;
+}
+
+::-webkit-file-upload-button {
+  font: inherit;
+  -webkit-appearance: button;
+}
+
+output {
+  display: inline-block;
+}
+
+iframe {
+  border: 0;
+}
+
+summary {
+  display: list-item;
+  cursor: pointer;
+}
+
+progress {
+  vertical-align: baseline;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+$utilities: ();
+$utilities: map-merge(
+    (
+      "align": (
+        property: vertical-align,
+        class: #{$variable-prefix}align,
+        values: baseline top middle bottom text-bottom text-top
+      ),
+      "float": (
+        class: #{$variable-prefix}float,
+        responsive: true,
+        property: float,
+        values: (
+          start: left,
+          end: right,
+          none: none,
+        )
+      ),
+      "opacity": (
+        class: #{$variable-prefix}opacity,
+        property: opacity,
+        values: (
+          0: 0,
+          25: .25,
+          50: .5,
+          75: .75,
+          100: 1,
+        )
+      ),
+      "overflow": (
+        class: #{$variable-prefix}overflow,
+        property: overflow,
+        values: auto hidden visible scroll,
+      ),
+      "display": (
+        responsive: true,
+        print: true,
+        property: display,
+        class: #{$variable-prefix}d,
+        values: inline inline-block block grid table table-row table-cell flex inline-flex none
+      ),
+      "shadow": (
+        property: box-shadow,
+        class: #{$variable-prefix}shadow,
+        values: (
+          null: $box-shadow,
+          sm: $box-shadow-sm,
+          lg: $box-shadow-lg,
+          none: none,
+        )
+      ),
+      "position": (
+        class: #{$variable-prefix}position,
+        property: position,
+        values: static relative absolute fixed sticky
+      ),
+      "top": (
+        class: #{$variable-prefix}top,
+        property: top,
+        values: $position-values
+      ),
+      "bottom": (
+        class: #{$variable-prefix}bottom,
+        property: bottom,
+        values: $position-values
+      ),
+      "start": (
+        property: left,
+        class: #{$variable-prefix}start,
+        values: $position-values
+      ),
+      "end": (
+        property: right,
+        class: #{$variable-prefix}end,
+        values: $position-values
+      ),
+      "translate-middle": (
+        property: transform,
+        class: #{$variable-prefix}translate-middle,
+        values: (
+          null: translate(-50%, -50%),
+          x: translateX(-50%),
+          y: translateY(-50%),
+        )
+      ),
+      "border": (
+        class: #{$variable-prefix}border,
+        property: border,
+        values: (
+          null: $border-width solid $border-color,
+          0: 0,
+        )
+      ),
+      "border-top": (
+        class: #{$variable-prefix}border-top,
+        property: border-top,
+        values: (
+          null: $border-width solid $border-color,
+          0: 0,
+        )
+      ),
+      "border-end": (
+        property: border-right,
+        class: #{$variable-prefix}border-end,
+        values: (
+          null: $border-width solid $border-color,
+          0: 0,
+        )
+      ),
+      "border-bottom": (
+        class: #{$variable-prefix}border-bottom,
+        property: border-bottom,
+        values: (
+          null: $border-width solid $border-color,
+          0: 0,
+        )
+      ),
+      "border-start": (
+        property: border-left,
+        class: #{$variable-prefix}border-start,
+        values: (
+          null: $border-width solid $border-color,
+          0: 0,
+        )
+      ),
+      "border-color": (
+        property: border-color,
+        class: #{$variable-prefix}border,
+        values: map-merge($theme-colors, ("white": $white))
+      ),
+      "border-width": (
+        property: border-width,
+        class: #{$variable-prefix}border,
+        values: $border-widths
+      ),
+      "width": (
+        property: width,
+        class: #{$variable-prefix}w,
+        values: (
+          25: 25%,
+          50: 50%,
+          75: 75%,
+          100: 100%,
+          auto: auto
+        )
+      ),
+      "max-width": (
+        property: max-width,
+        class: #{$variable-prefix}mw,
+        values: (100: 100%)
+      ),
+      "viewport-width": (
+        property: width,
+        class: #{$variable-prefix}vw,
+        values: (100: 100vw)
+      ),
+      "min-viewport-width": (
+        property: min-width,
+        class: #{$variable-prefix}min-vw,
+        values: (100: 100vw)
+      ),
+      "height": (
+        property: height,
+        class: #{$variable-prefix}h,
+        values: (
+          25: 25%,
+          50: 50%,
+          75: 75%,
+          100: 100%,
+          auto: auto
+        )
+      ),
+      "max-height": (
+        property: max-height,
+        class: #{$variable-prefix}mh,
+        values: (100: 100%)
+      ),
+      "viewport-height": (
+        property: height,
+        class: #{$variable-prefix}vh,
+        values: (100: 100vh)
+      ),
+      "min-viewport-height": (
+        property: min-height,
+        class: #{$variable-prefix}min-vh,
+        values: (100: 100vh)
+      ),
+      "flex": (
+        responsive: true,
+        property: flex,
+        class: #{$variable-prefix}flex,
+        values: (fill: 1 1 auto)
+      ),
+      "flex-direction": (
+        responsive: true,
+        property: flex-direction,
+        class: #{$variable-prefix}flex,
+        values: row column row-reverse column-reverse
+      ),
+      "flex-grow": (
+        responsive: true,
+        property: flex-grow,
+        class: #{$variable-prefix}flex,
+        values: (
+          grow-0: 0,
+          grow-1: 1,
+        )
+      ),
+      "flex-shrink": (
+        responsive: true,
+        property: flex-shrink,
+        class: #{$variable-prefix}flex,
+        values: (
+          shrink-0: 0,
+          shrink-1: 1,
+        )
+      ),
+      "flex-wrap": (
+        responsive: true,
+        property: flex-wrap,
+        class: #{$variable-prefix}flex,
+        values: wrap nowrap wrap-reverse
+      ),
+      "gap": (
+        responsive: true,
+        property: gap,
+        class: #{$variable-prefix}gap,
+        values: $spacers
+      ),
+      "justify-content": (
+        responsive: true,
+        class: #{$variable-prefix}justify-content,
+        property: justify-content,
+        values: (
+          start: flex-start,
+          end: flex-end,
+          center: center,
+          between: space-between,
+          around: space-around,
+          evenly: space-evenly,
+        )
+      ),
+      "align-items": (
+        responsive: true,
+        class: #{$variable-prefix}align-items,
+        property: align-items,
+        values: (
+          start: flex-start,
+          end: flex-end,
+          center: center,
+          baseline: baseline,
+          stretch: stretch,
+        )
+      ),
+      "align-content": (
+        responsive: true,
+        class: #{$variable-prefix}align-content,
+        property: align-content,
+        values: (
+          start: flex-start,
+          end: flex-end,
+          center: center,
+          between: space-between,
+          around: space-around,
+          stretch: stretch,
+        )
+      ),
+      "align-self": (
+        responsive: true,
+        class: #{$variable-prefix}align-self,
+        property: align-self,
+        values: (
+          auto: auto,
+          start: flex-start,
+          end: flex-end,
+          center: center,
+          baseline: baseline,
+          stretch: stretch,
+        )
+      ),
+      "order": (
+        responsive: true,
+        property: order,
+        class: #{$variable-prefix}order,
+        values: (
+          first: -1,
+          0: 0,
+          1: 1,
+          2: 2,
+          3: 3,
+          4: 4,
+          5: 5,
+          last: 6,
+        ),
+      ),
+      "margin": (
+        responsive: true,
+        property: margin,
+        class: #{$variable-prefix}m,
+        values: map-merge($spacers, (auto: auto))
+      ),
+      "margin-x": (
+        responsive: true,
+        property: margin-right margin-left,
+        class: #{$variable-prefix}mx,
+        values: map-merge($spacers, (auto: auto))
+      ),
+      "margin-y": (
+        responsive: true,
+        property: margin-top margin-bottom,
+        class: #{$variable-prefix}my,
+        values: map-merge($spacers, (auto: auto))
+      ),
+      "margin-top": (
+        responsive: true,
+        property: margin-top,
+        class: #{$variable-prefix}mt,
+        values: map-merge($spacers, (auto: auto))
+      ),
+      "margin-end": (
+        responsive: true,
+        property: margin-right,
+        class: #{$variable-prefix}me,
+        values: map-merge($spacers, (auto: auto))
+      ),
+      "margin-bottom": (
+        responsive: true,
+        property: margin-bottom,
+        class: #{$variable-prefix}mb,
+        values: map-merge($spacers, (auto: auto))
+      ),
+      "margin-start": (
+        responsive: true,
+        property: margin-left,
+        class: #{$variable-prefix}ms,
+        values: map-merge($spacers, (auto: auto))
+      ),
+      "negative-margin": (
+        responsive: true,
+        property: margin,
+        class: #{$variable-prefix}m,
+        values: $negative-spacers
+      ),
+      "negative-margin-x": (
+        responsive: true,
+        property: margin-right margin-left,
+        class: #{$variable-prefix}mx,
+        values: $negative-spacers
+      ),
+      "negative-margin-y": (
+        responsive: true,
+        property: margin-top margin-bottom,
+        class: #{$variable-prefix}my,
+        values: $negative-spacers
+      ),
+      "negative-margin-top": (
+        responsive: true,
+        property: margin-top,
+        class: #{$variable-prefix}mt,
+        values: $negative-spacers
+      ),
+      "negative-margin-end": (
+        responsive: true,
+        property: margin-right,
+        class: #{$variable-prefix}me,
+        values: $negative-spacers
+      ),
+      "negative-margin-bottom": (
+        responsive: true,
+        property: margin-bottom,
+        class: #{$variable-prefix}mb,
+        values: $negative-spacers
+      ),
+      "negative-margin-start": (
+        responsive: true,
+        property: margin-left,
+        class: #{$variable-prefix}ms,
+        values: $negative-spacers
+      ),
+      // Padding utilities
+      "padding": (
+        responsive: true,
+        property: padding,
+        class: #{$variable-prefix}p,
+        values: $spacers
+      ),
+      "padding-x": (
+        responsive: true,
+        property: padding-right padding-left,
+        class: #{$variable-prefix}px,
+        values: $spacers
+      ),
+      "padding-y": (
+        responsive: true,
+        property: padding-top padding-bottom,
+        class: #{$variable-prefix}py,
+        values: $spacers
+      ),
+      "padding-top": (
+        responsive: true,
+        property: padding-top,
+        class: #{$variable-prefix}pt,
+        values: $spacers
+      ),
+      "padding-end": (
+        responsive: true,
+        property: padding-right,
+        class: #{$variable-prefix}pe,
+        values: $spacers
+      ),
+      "padding-bottom": (
+        responsive: true,
+        property: padding-bottom,
+        class: #{$variable-prefix}pb,
+        values: $spacers
+      ),
+      "padding-start": (
+        responsive: true,
+        property: padding-left,
+        class: #{$variable-prefix}ps,
+        values: $spacers
+      ),
+      "font-family": (
+        property: font-family,
+        class: #{$variable-prefix}font,
+        values: (monospace: var(--#{$variable-prefix}font-monospace))
+      ),
+      "font-size": (
+        rfs: true,
+        property: font-size,
+        class: #{$variable-prefix}fs,
+        values: $font-sizes
+      ),
+      "font-style": (
+        property: font-style,
+        class: #{$variable-prefix}fst,
+        values: italic normal
+      ),
+      "font-weight": (
+        property: font-weight,
+        class: #{$variable-prefix}fw,
+        values: (
+          light: $font-weight-light,
+          lighter: $font-weight-lighter,
+          normal: $font-weight-normal,
+          bold: $font-weight-bold,
+          bolder: $font-weight-bolder
+        )
+      ),
+      "line-height": (
+        property: line-height,
+        class: #{$variable-prefix}lh,
+        values: (
+          1: 1,
+          sm: $line-height-sm,
+          base: $line-height-base,
+          lg: $line-height-lg,
+        )
+      ),
+      "text-align": (
+        responsive: true,
+        property: text-align,
+        class: #{$variable-prefix}text,
+        values: (
+          start: left,
+          end: right,
+          center: center,
+        )
+      ),
+      "text-decoration": (
+        class: #{$variable-prefix}text-decoration,
+        property: text-decoration,
+        values: none underline line-through
+      ),
+      "text-transform": (
+        property: text-transform,
+        class: #{$variable-prefix}text,
+        values: lowercase uppercase capitalize
+      ),
+      "white-space": (
+        property: white-space,
+        class: #{$variable-prefix}text,
+        values: (
+          wrap: normal,
+          nowrap: nowrap,
+        )
+      ),
+      "word-wrap": (
+        property: word-wrap word-break,
+        class: #{$variable-prefix}text,
+        values: (break: break-word),
+        rtl: false
+      ),
+      "color": (
+        property: color,
+        class: #{$variable-prefix}text,
+        local-vars: (
+          "text-opacity": 1
+        ),
+        values: map-merge(
+            $utilities-text-colors,
+            (
+              "muted": $text-muted,
+              "black-50": rgba($black, .5),
+              "white-50": rgba($white, .5),
+              "reset": inherit,
+            )
+        )
+      ),
+      "text-opacity": (
+        css-var: true,
+        class: #{$variable-prefix}text-opacity,
+        values: (
+          25: .25,
+          50: .5,
+          75: .75,
+          100: 1
+        )
+      ),
+      "background-color": (
+        property: background-color,
+        class: #{$variable-prefix}bg,
+        local-vars: (
+          "bg-opacity": 1
+        ),
+        values: map-merge(
+            $utilities-bg-colors,
+            (
+              "transparent": transparent
+            )
+        )
+      ),
+      "bg-opacity": (
+        css-var: true,
+        class: #{$variable-prefix}bg-opacity,
+        values: (
+          10: .1,
+          25: .25,
+          50: .5,
+          75: .75,
+          100: 1
+        )
+      ),
+      // scss-docs-end utils-bg-color
+      "gradient": (
+        property: background-image,
+        class: #{$variable-prefix}bg,
+        values: (gradient: var(--#{$variable-prefix}gradient))
+      ),
+      // scss-docs-start utils-interaction
+      "user-select": (
+        property: user-select,
+        class: #{$variable-prefix}user-select,
+        values: all auto none
+      ),
+      "pointer-events": (
+        property: pointer-events,
+        class: #{$variable-prefix}pe,
+        values: none auto,
+      ),
+      "rounded": (
+        property: border-radius,
+        class: #{$variable-prefix}rounded,
+        values: (
+          null: $border-radius,
+          0: 0,
+          1: $border-radius-sm,
+          2: $border-radius,
+          3: $border-radius-lg,
+          circle: 50%,
+          pill: $border-radius-pill
+        )
+      ),
+      "rounded-top": (
+        property: border-top-left-radius border-top-right-radius,
+        class: #{$variable-prefix}rounded-top,
+        values: (null: $border-radius)
+      ),
+      "rounded-end": (
+        property: border-top-right-radius border-bottom-right-radius,
+        class: #{$variable-prefix}rounded-end,
+        values: (null: $border-radius)
+      ),
+      "rounded-bottom": (
+        property: border-bottom-right-radius border-bottom-left-radius,
+        class: #{$variable-prefix}rounded-bottom,
+        values: (null: $border-radius)
+      ),
+      "rounded-start": (
+        property: border-bottom-left-radius border-top-left-radius,
+        class: #{$variable-prefix}rounded-start,
+        values: (null: $border-radius)
+      ),
+      "visibility": (
+        property: visibility,
+        class: #{$variable-prefix}null,
+        values: (
+          visible: visible,
+          invisible: hidden,
+        )
+      )
+    ),
+    $utilities
+);
+
+@import "../node_modules/bootstrap/scss/utilities/api";
+
+.#{$variable-prefix}clearfix {
+  @include clearfix();
+}
+
+@each $color, $value in $theme-colors {
+  .#{$variable-prefix}link-#{$color} {
+    color: $value;
+
+    @if $link-shade-percentage != 0 {
+      &:hover,
+      &:focus {
+        color: if(color-contrast($value) == $color-contrast-light, shade-color($value, $link-shade-percentage), tint-color($value, $link-shade-percentage));
+      }
+    }
+  }
+}
+
+.#{$variable-prefix}fixed-top {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: $zindex-fixed;
+}
+
+.#{$variable-prefix}fixed-bottom {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: $zindex-fixed;
+}
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    .#{$variable-prefix}sticky#{$infix}-top {
+      position: sticky;
+      top: 0;
+      z-index: $zindex-sticky;
+    }
+  }
+}
+
+.#{$variable-prefix}hstack {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-self: stretch;
+}
+
+.#{$variable-prefix}vstack {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-self: stretch;
+}
+
+.#{$variable-prefix}text-truncate {
+  @include text-truncate();
+}
+
+.#{$variable-prefix}collapse::after {
+  height: 0;
+  content: "";
+  font-size: 0;
+  visibility: hidden;
+  display: table;
+}
+
+.#{$variable-prefix}rect {
+  width: 100px;
+  height: 100px;
+  box-sizing: border-box;
+  background-color: #03719C;
+}
+
+
+.#{$variable-prefix}bg-line {
+  background: linear-gradient(90deg, rgb(0 0 0 / 6%), rgb(0 0 0 / 6%)) no-repeat 50%;
+  background-size: 100% 1px;
+
+  > span {
+    padding: 0 15px;
+    background: #FFFFFF;
+  }
+}
+
+.#{$variable-prefix}fluid {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 50%;
+
+  &#{&}-h-25 {
+    padding-bottom: 25%;
+  }
+
+  &#{&}-h-75 {
+    padding-bottom: 75%;
+  }
+
+  &#{&}-h-100 {
+    padding-bottom: 100%;
+  }
+
+  > #{&}-box {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+}
+
+.#{$variable-prefix}img-wrap {
+  > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}

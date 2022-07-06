@@ -1,9 +1,9 @@
 {
   "name": "@systemlight/pure.css",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "scripts": {
     "lint:stylelint-prettier-check": "stylelint-config-prettier-check",
-    "lint:stylelint": "stylelint src/**/*.{scss,css} --fix",
+    "lint:stylelint": "stylelint dist/**/*.{scss,css} --fix",
     "build:scss": "sass src/:dist/",
     "build:postcss": "postcss dist/**/*.css -r"
   },
@@ -44,5 +44,8 @@
     "stylelint-config-prettier-scss": "^0.0.1",
     "stylelint-config-standard-scss": "^4.0.0",
     "stylelint-declaration-block-no-ignored-properties": "^2.5.0"
+  },
+  "dependencies": {
+    "bootstrap": "^5.1.3"
   }
 }
