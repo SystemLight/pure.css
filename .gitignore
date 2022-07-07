@@ -6,6 +6,7 @@
 
 # Special content
 build/
+.DS_Store
 
 # Logs
 logs
