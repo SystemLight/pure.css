@@ -1,5 +1,7 @@
 # pure.css
 
+[![NPM version](https://img.shields.io/npm/v/@systemlight/pure.css.svg)](https://www.npmjs.com/package/@systemlight/pure.css)
+
 > web开发基础样式
 
 ## Usage
