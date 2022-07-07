@@ -5,7 +5,8 @@
     "lint:stylelint-prettier-check": "stylelint-config-prettier-check",
     "lint:stylelint": "stylelint dist/**/*.{scss,css} --fix",
     "build:scss": "sass src/:dist/",
-    "build:postcss": "postcss dist/**/*.css -r"
+    "build:postcss": "postcss dist/bootstrap.pure.css --no-map -o dist/bootstrap.pure.min.css",
+    "build:dist": "npm run build:scss && npm run build:postcss"
   },
   "keywords": [
     "pure",
@@ -13,9 +14,10 @@
     "normalize"
   ],
   "description": "Basic style of Web Development.",
-  "main": "src/pure.css",
+  "main": "dist/pure.css",
   "files": [
-    "src/"
+    "src/",
+    "dist/"
   ],
   "author": "SystemLighht",
   "license": "MIT",
@@ -33,6 +35,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.0.2",
     "@commitlint/config-conventional": "^17.0.2",
+    "cssnano": "^5.1.12",
     "postcss": "^8.4.14",
     "postcss-cli": "^9.1.0",
     "postcss-preset-env": "^7.7.1",

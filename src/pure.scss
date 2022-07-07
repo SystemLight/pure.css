@@ -897,17 +897,20 @@ $utilities: map-merge(
           100: 1
         )
       ),
-      // scss-docs-end utils-bg-color
       "gradient": (
         property: background-image,
         class: #{$variable-prefix}bg,
         values: (gradient: var(--#{$variable-prefix}gradient))
       ),
-      // scss-docs-start utils-interaction
       "user-select": (
         property: user-select,
         class: #{$variable-prefix}user-select,
         values: all auto none
+      ),
+      "cursor": (
+        property: cursor,
+        class: #{$variable-prefix}cursor,
+        values: none pointer text copy
       ),
       "pointer-events": (
         property: pointer-events,
