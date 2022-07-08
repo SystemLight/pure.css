@@ -1,6 +1,6 @@
 {
   "name": "@systemlight/pure.css",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "scripts": {
     "lint:stylelint-prettier-check": "stylelint-config-prettier-check",
     "lint:stylelint": "stylelint dist/**/*.{scss,css} --fix",
